@@ -1,13 +1,14 @@
 #include "Vector.h"
 
 Vector::Vector(int size, int value){
+    this->size = size; 
     vector = new int[size];
     for(int i = 0; i < size; i++){
         vector[i] = value; 
     }
 }
 Vector::~Vector(){
-    delete vector; 
+    delete[] vector; 
 }
 void Vector::push_back(int element){
     size += 1;
@@ -28,7 +29,7 @@ bool Vector::remove(int element){
                 vectornew[j] = vector[j];
             }
             for(int j = i + 1; j < size + 1; j++){
-                vectornew[i - 1] = vector[j];
+                vectornew[j - 1] = vector[j];
             }
             delete[] vector;
             vector = vectornew;
@@ -36,4 +37,12 @@ bool Vector::remove(int element){
         }
     }
     return false; 
+}
+int& Vector::operator[](int index){
+    return vector[index];
+}
+void Vector::print(){
+    for(int i = 0; i < size; i++){
+        std::cout << vector[i] << " ";
+    }
 }

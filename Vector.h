@@ -9,5 +9,6 @@ public:
     ~Vector();
     void push_back(int element);
     bool remove(int element);
-    
+    int& operator[](int index);
+    void print();
 }; 
